@@ -30,7 +30,7 @@ jobs:
         ./build-pkg.sh --platform openwrt --arch aarch64_cortex-a53 --outputdir ./output
 
     - name: Upload IPK artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: smartdns-ipk
         path: ./package/output/*.ipk
