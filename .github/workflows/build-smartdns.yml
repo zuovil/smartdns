@@ -19,15 +19,17 @@ jobs:
         sudo apt update
         sudo apt install -y build-essential gcc make pkg-config
 
-    - name: Set up environment variables
-      run: |
-        export PATH=$PATH:/usr/bin
+    - name: Prepare output directory
+      run: mkdir -p ./package/output
 
     - name: Build smartdns openwrt package
       working-directory: ./package
       run: |
         chmod +x build-pkg.sh
         ./build-pkg.sh --platform openwrt --arch aarch64_cortex-a53 --outputdir ./output
+
+    - name: List built packages
+      run: ls -l ./package/output
 
     - name: Upload IPK artifacts
       uses: actions/upload-artifact@v4
